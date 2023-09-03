@@ -9,7 +9,7 @@ import os
 import subprocess
 import shutil
 
-import demo_syncnet as syncnet
+# import demo_syncnet as syncnet
 
 duration = 4
 FPS = 25
@@ -199,14 +199,12 @@ convert_videos2fps(data_root)
 split_video_by_dir(data_root, output_dir, duration)
 # 删除时长小于2秒的视频
 clean_videos(output_dir)
-
+# 视频文件改名
+# rename_videos(output_dir)
 # 检查音视频同步
 
-# 视频文件改名
-syncnet(output_dir)
-
 # 构建训练集、测试集、验证集txt
-train_txt, test_txt, val_txt = get_dataset_txt(output_dir)
+# train_txt, test_txt, val_txt = get_dataset_txt(output_dir)
 
 # split_video_by_dir(args.data_root, args.target_root, duration)
 # clean_videos(args.target_root)

@@ -14,7 +14,7 @@ parser.add_argument('--initial_model', type=str, default="data/syncnet_v2.model"
 parser.add_argument('--videofile', type=str, default="data/example.avi", help='')
 parser.add_argument('--maxoffset', type=int, default=3, help='')
 parser.add_argument('--minoffset', type=int, default=-3, help='')
-parser.add_argument('--data_root', type=str,  help='', required=True)
+parser.add_argument('--data_root', type=str, help='', required=True)
 parser.add_argument('--batch_size', type=int, default='20', help='')
 parser.add_argument('--vshift', type=int, default='15', help='')
 parser.add_argument('--tmp_dir', type=str, default="data/work/pytmp", help='')
@@ -49,7 +49,14 @@ with tqdm(total=200) as pbar:
                     os.remove(os.path.join(args.data_root, face, video))
                     pbar.update(1)
 
-
+def rename_videos(data_root):
+    faces = os.listdir(data_root)
+    for face in faces:
+        videos = os.listdir(os.path.join(data_root, face))
+        for index, video in enumerate(videos):
+            iii = str(index).zfill(5)
+            os.rename(os.path.join(data_root, face, video), os.path.join(data_root, face, iii+'.mp4'))
+rename_videos(args.data_root)
 
 
 
